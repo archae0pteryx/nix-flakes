@@ -11,6 +11,5 @@
     # fishPlugins.fzf-fish
     fishPlugins.tide
     nixfmt
-    docker
   ];
 }

@@ -33,6 +33,7 @@
     "copyq"
     "appcleaner"
     "balenaetcher"
+    "docker"
     "figma"
     "google-chrome"
     "keepassxc"
