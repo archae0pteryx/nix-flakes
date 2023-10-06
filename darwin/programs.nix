@@ -4,6 +4,9 @@
     userName = "archae0pteryx";
     userEmail = "github@pocketcereal.com";
     extraConfig = {
+      pull = {
+        ff = "only";
+      };
       user = {
         signingKey = "~/.ssh/id_ed25519.pub";
       };

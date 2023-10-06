@@ -1,6 +1,7 @@
 {
   enable = true;
   brews = [
+    "act"
     "awscli"
     "ffmpeg"
     "fzf"
