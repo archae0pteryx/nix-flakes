@@ -28,14 +28,7 @@
   
   # fallback for WHEN I bork things
   programs.zsh.enable = true;
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      if test (uname -m) = "arm64"
-          eval (/opt/homebrew/bin/brew shellenv)
-      end
-    '';
-  };
+  programs.fish = import ./fish.nix { inherit systemVars; };
 
   programs = {
     gnupg.agent = {

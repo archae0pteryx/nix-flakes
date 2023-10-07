@@ -31,5 +31,8 @@
       set expandtab
     '';
   };
-
+  direnv = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }

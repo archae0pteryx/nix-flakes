@@ -3,6 +3,7 @@
   brews = [
     "act"
     "awscli"
+    "awsebcli"
     "ffmpeg"
     "fzf"
     "gnupg"
@@ -57,6 +58,6 @@
   onActivation = {
     autoUpdate = false;
     upgrade = false;
-    cleanup = "zap";
+    cleanup = "uninstall";
   };
 }
