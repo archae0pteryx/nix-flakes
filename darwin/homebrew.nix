@@ -54,7 +54,6 @@
     "google-chrome"
     "iterm2"
     "keepassxc"
-    "ldconfig"
     "logseq"
     "mullvadvpn"
     "obsidian"
