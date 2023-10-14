@@ -1,9 +1,10 @@
 { pkgs, ... }: {
-  shells = [ "/run/current-system/sw/bin/fish" ];
-  loginShell = "/run/current-system/sw/bin/fish";
+  shells = [ pkgs.fish ];
+  # shells = [ "/run/current-system/sw/bin/fish" ];
+  # loginShell = "/run/current-system/sw/bin/fish";
   variables = {
     EDITOR = "vim";
-    SHELL = "/run/current-system/sw/bin/fish";
+    # SHELL = "/run/current-system/sw/bin/fish";
   };
   systemPackages = with pkgs; [
     vim

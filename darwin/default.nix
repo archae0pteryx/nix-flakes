@@ -1,5 +1,6 @@
 { pkgs, systemVars, ... }: {
   users.users."${systemVars.user}" = {
+    shell = pkgs.fish;
     home = "/Users/${systemVars.user}";
     openssh = {
       authorizedKeys = {
@@ -25,7 +26,7 @@
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
   };
-  
+
   # fallback for WHEN I bork things
   programs.zsh.enable = true;
   programs.fish = import ./fish.nix { inherit systemVars; };
@@ -46,28 +47,28 @@
   };
 
   homebrew = import ./homebrew.nix;
-
-  system.defaults = {
-    dock = {
-      autohide = true;
-      orientation = "right";
-      tilesize = 20;
-      launchanim = false;
-      mineffect = "scale";
-      minimize-to-application = true;
-      mouse-over-hilite-stack = true;
-      mru-spaces = false;
-    };
-    finder = {
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      FXEnableExtensionChangeWarning = false;
-      FXPreferredViewStyle = "Nlsv";
-      ShowPathbar = true;
-      ShowStatusBar = true;
-    };
-    loginwindow = { LoginwindowText = "FOOBAR"; };
-    spaces.spans-displays = true;
-    trackpad.Clicking = true;
-  };
+  system = import ./system.nix;
+  # system.defaults = {
+  #   dock = {
+  #     autohide = true;
+  #     orientation = "right";
+  #     tilesize = 20;
+  #     launchanim = false;
+  #     mineffect = "scale";
+  #     minimize-to-application = true;
+  #     mouse-over-hilite-stack = true;
+  #     mru-spaces = false;
+  #   };
+  #   finder = {
+  #     AppleShowAllExtensions = true;
+  #     AppleShowAllFiles = true;
+  #     FXEnableExtensionChangeWarning = false;
+  #     FXPreferredViewStyle = "Nlsv";
+  #     ShowPathbar = true;
+  #     ShowStatusBar = true;
+  #   };
+  #   loginwindow = { LoginwindowText = "FOOBAR"; };
+  #   spaces.spans-displays = false;
+  #   trackpad.Clicking = true;
+  # };
 }

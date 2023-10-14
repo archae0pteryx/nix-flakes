@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  go.enable = true;
   git = {
     enable = true;
     userName = "archae0pteryx";
@@ -12,6 +13,9 @@
       };
       gpg = {
         format = "ssh";
+      };
+      commit = {
+        gpgSign = true;
       };
     };
   };
@@ -30,9 +34,5 @@
       set shiftwidth=4
       set expandtab
     '';
-  };
-  direnv = {
-    enable = true;
-    enableFishIntegration = true;
   };
 }
