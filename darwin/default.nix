@@ -1,10 +1,9 @@
 { pkgs, systemVars, ... }: {
   users.users."${systemVars.user}" = {
-    # shell = pkgs.fish;
     home = "/Users/${systemVars.user}";
     packages = [
-      fishPlugins.tide
-      nixfmt
+      pkgs.fishPlugins.tide
+      pkgs.nixfmt
     ];
     openssh = {
       authorizedKeys = {
@@ -31,11 +30,9 @@
     ];
   };
 
-  # fallback for WHEN I bork things
-  # programs.zsh.enable = true;
-  # programs.fish = import ./fish.nix { inherit systemVars; };
-
   programs.bash.enable = true;
+  programs.zsh.enable = true;
+  programs.fish = import ./fish.nix { inherit systemVars; };
 
   programs = {
     gnupg.agent = {

@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  shells = [ pkgs.fish pkgs.zsh ];
+  shells = [ pkgs.fish ];
+  loginShell = pkgs.zsh;
   variables = {
     EDITOR = "vim";
   };
