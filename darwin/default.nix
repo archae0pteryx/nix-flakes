@@ -48,27 +48,5 @@
 
   homebrew = import ./homebrew.nix;
   system = import ./system.nix;
-  # system.defaults = {
-  #   dock = {
-  #     autohide = true;
-  #     orientation = "right";
-  #     tilesize = 20;
-  #     launchanim = false;
-  #     mineffect = "scale";
-  #     minimize-to-application = true;
-  #     mouse-over-hilite-stack = true;
-  #     mru-spaces = false;
-  #   };
-  #   finder = {
-  #     AppleShowAllExtensions = true;
-  #     AppleShowAllFiles = true;
-  #     FXEnableExtensionChangeWarning = false;
-  #     FXPreferredViewStyle = "Nlsv";
-  #     ShowPathbar = true;
-  #     ShowStatusBar = true;
-  #   };
-  #   loginwindow = { LoginwindowText = "FOOBAR"; };
-  #   spaces.spans-displays = false;
-  #   trackpad.Clicking = true;
-  # };
+  
 }

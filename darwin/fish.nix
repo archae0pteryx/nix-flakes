@@ -7,15 +7,18 @@
   '';
   useBabelfish = true;
   shellAliases = {
-    config = "cd ~/.config/nix-darwin && code ~/.config/nix-darwin";
+    config = "code ~/.config/nix-darwin";
     gco = "git checkout";
+    gcob = "git checkout -b";
+    gc = "git commit -S -m";
     gp = "git push";
     dc = "docker compose";
     dcu = "docker compose up";
     dcd = "docker compose down";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    flakebuild =  "darwin-rebuild switch --flake ~/.config/nix-darwin";
+    darwinrebuild =  "darwin-rebuild switch --flake ~/.config/nix-darwin";
     l = "ls -al";
+    k = "kubectl";
   };
 }

@@ -26,6 +26,7 @@
     "yt-dlp"
     # # #
     "coreutils"
+    "golang"
     "meson"
     "glib"
     "opencv"
@@ -72,8 +73,8 @@
     # "virtualbox"
   ];
   onActivation = {
-    autoUpdate = false;
-    upgrade = false;
+    autoUpdate = true;
+    upgrade = true;
     cleanup = "uninstall";
   };
 }
