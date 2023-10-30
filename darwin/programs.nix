@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ systemVars, pkgs, ... }: {
   go.enable = true;
   git = {
     enable = true;

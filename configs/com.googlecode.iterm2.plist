@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Command</key>
-	<string>/bin/bash</string>
+	<string>/run/current-system/sw/bin/fish</string>
 	<key>Default Bookmark Guid</key>
 	<string>FC5656CB-E6EE-47B9-98B5-8DF5881812DB</string>
 	<key>HapticFeedbackForEsc</key>
@@ -211,7 +211,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string>/bin/bash</string>
+			<string>/run/current-system/sw/bin/fish -l</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -244,7 +244,7 @@
 				<real>1</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -849,7 +849,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/run/current-system/sw/bin/fish -l</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -882,7 +882,7 @@
 				<real>1</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Custom Window Title</key>
@@ -1540,6 +1540,8 @@
 			<string>/Users/rimraf</string>
 		</dict>
 	</array>
+	<key>OnlyWhenMoreTabs</key>
+	<true/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
@@ -1577,6 +1579,10 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>Print In Black And White</key>
+	<true/>
+	<key>PromptOnQuit</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>

@@ -7,5 +7,6 @@
   systemPackages = with pkgs; [
     vim
     wget
+    nixfmt
   ];
 }

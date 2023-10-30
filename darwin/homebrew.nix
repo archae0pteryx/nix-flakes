@@ -2,21 +2,28 @@
   enable = true;
   brews = [
     "act"
+    "adwaita-icon-theme"
     "awscli"
     "awsebcli"
     "ffmpeg"
     "fzf"
+    "gtk4"
     "gnupg"
+    "gsettings-desktop-schemas"
     "helm"
     "htop"
-    # "hyperkit"
     "iperf3"
+    "hashicorp/tap/packer"
     "jq"
     "kubectx"
     "kubectl"
+    "libheif"
+    "librsvg"
     "minikube"
     "nmap"
+    "pkg-config"
     "pyenv"
+    "speedtest-cli"
     "terraform"
     "terragrunt"
     "tmux"
@@ -26,6 +33,7 @@
     "yt-dlp"
     # # #
     "coreutils"
+    "rustup"
     "golang"
     "meson"
     "glib"
@@ -49,6 +57,7 @@
     "beekeeper-studio"
     "copyq"
     "discord"
+    "disk-drill"
     "docker"
     "figma"
     "firefox"
@@ -71,6 +80,10 @@
     "whatsapp"
     "zoom"
     # "virtualbox"
+  ];
+  taps = [
+    "hashicorp/tap"
+
   ];
   onActivation = {
     autoUpdate = true;

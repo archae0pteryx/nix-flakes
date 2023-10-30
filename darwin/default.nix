@@ -3,7 +3,8 @@
     home = "/Users/${systemVars.user}";
     packages = [
       pkgs.fishPlugins.tide
-      pkgs.nixfmt
+      pkgs.fishPlugins.autopair
+      pkgs.fishPlugins.fzf
     ];
     openssh = {
       authorizedKeys = {
@@ -32,7 +33,7 @@
 
   programs.bash.enable = true;
   programs.zsh.enable = true;
-  programs.fish = import ./fish.nix { inherit systemVars; };
+  programs.fish = import ./fish.nix { inherit systemVars pkgs; };
 
   programs = {
     gnupg.agent = {
@@ -46,7 +47,7 @@
 
   home-manager.users."${systemVars.user}" = {
     home.stateVersion = "22.05";
-    programs = import ./programs.nix pkgs;
+    programs = import ./programs.nix { inherit pkgs systemVars; };
   };
 
   homebrew = import ./homebrew.nix;
