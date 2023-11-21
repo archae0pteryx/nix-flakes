@@ -1,11 +1,6 @@
 { pkgs, systemVars, ... }: {
   users.users."${systemVars.user}" = {
     home = "/Users/${systemVars.user}";
-    packages = [
-      pkgs.fishPlugins.tide
-      pkgs.fishPlugins.autopair
-      pkgs.fishPlugins.fzf
-    ];
     openssh = {
       authorizedKeys = {
         keys = [
@@ -14,8 +9,6 @@
       };
     };
   };
-
-  environment = import ./environment.nix { inherit pkgs; };
 
   networking = {
     computerName = systemVars.hostname;
@@ -31,15 +24,20 @@
     ];
   };
 
-  programs.bash.enable = true;
-  programs.zsh.enable = true;
-  programs.fish = import ./fish.nix { inherit systemVars pkgs; };
-
   programs = {
+    bash.enable = true;
+    zsh.enable = true;
+    fish.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+  };
+
+  environment = {
+    shells = with pkgs; [ bashInteractive fish zsh ];
+    systemPackages = with pkgs; [ vim wget nixfmt ];
+    variables = { EDITOR = "vim"; };
   };
 
   home-manager.useGlobalPkgs = true;

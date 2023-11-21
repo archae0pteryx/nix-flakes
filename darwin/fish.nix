@@ -1,15 +1,40 @@
 { systemVars, pkgs, ... }: {
   enable = true;
-  useBabelfish = true;
-  shellInit = ''
+  plugins = [
+    {
+      name = "tide";
+      src = pkgs.fetchFromGitHub {
+        owner = "IlanCosman";
+        repo = "tide";
+        rev = "1af8bf782cfea6c9da85716bd45c24adb3499556";
+        sha256 = "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=";
+      };
+    }
+    {
+      name = "fisher";
+      src = pkgs.fetchFromGitHub {
+        owner = "jorgebucaran";
+        repo = "fisher";
+        rev = "2efd33ccd0777ece3f58895a093f32932bd377b6";
+        sha256 = "sha256-e8gIaVbuUzTwKtuMPNXBT5STeddYqQegduWBtURLT3M=";
+      };
+    }
+  ];
+  interactiveShellInit = ''
     if test (uname -m) = "arm64"
         eval (/opt/homebrew/bin/brew shellenv)
     end
     set -gx PATH "$HOME/.cargo/bin" $PATH
+    set -gx VOLTA_HOME "$HOME/.volta"
+    set -gx PATH "$VOLTA_HOME/bin" $PATH
+    set -gx PATH "$HOME/.local/bin" $PATH
+    set -Ux PYENV_ROOT $HOME/.pyenv
+    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+    set - U ZO_METHOD "code"
   '';
   shellAliases = {
     p = "ping 8.8.8.8";
-    config = "code ~/.config/nix-darwin";
+    config = "cd ~/.config/nix-darwin && code ~/.config/nix-darwin";
     gco = "git checkout";
     gcob = "git checkout -b";
     gc = "git commit -S -m";
@@ -22,9 +47,10 @@
     dcdv = "docker compose down -v --remove-orphans";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    darwinbuild =  "darwin-rebuild switch --flake ~/.config/nix-darwin";
+    darwinbuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
     l = "ls -al";
     k = "kubectl";
+    kc = "kubectl config";
     tf = "terraform";
     tg = "terragrunt";
     tfa = "terraform apply";
@@ -38,13 +64,4 @@
     desk = "cd ~/Desktop";
     eyepop = "cd ~/Code/eyepop";
   };
-  # plugins = [{
-  #   name = "fish-kubectl-completions";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "evanlucas";
-  #     repo = "fish-kubectl-completions";
-  #     rev = "ced676392575d618d8b80b3895cdc3159be3f628";
-  #     sha256 = "sha256-OYiYTW+g71vD9NWOcX1i2/TaQfAg+c2dJZ5ohwWSDCc=";
-  #   };
-  # }];
 }
