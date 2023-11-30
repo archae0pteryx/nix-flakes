@@ -30,11 +30,12 @@
     set -gx PATH "$HOME/.local/bin" $PATH
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-    set - U ZO_METHOD "code"
+    set -Ux ZO_METHOD "code"
   '';
   shellAliases = {
     p = "ping 8.8.8.8";
-    config = "cd ~/.config/nix-darwin && code ~/.config/nix-darwin";
+    config = "cd ~/.config/nix-darwin && vim ~/.config/nix-darwin";
+    fishconfig = "cd ~/.config/fish && vim ~/.config/fish";
     gco = "git checkout";
     gcob = "git checkout -b";
     gc = "git commit -S -m";
