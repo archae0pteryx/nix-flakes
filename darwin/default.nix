@@ -1,6 +1,6 @@
-{ pkgs, systemVars, ... }: {
-  users.users."${systemVars.user}" = {
-    home = "/Users/${systemVars.user}";
+{ pkgs, user, hostname, ... }: {
+  users.users."${user}" = {
+    home = "/Users/${user}";
     openssh = {
       authorizedKeys = {
         keys = [
@@ -11,8 +11,8 @@
   };
 
   networking = {
-    computerName = systemVars.hostname;
-    hostName = systemVars.hostname;
+    computerName = hostname;
+    hostName = hostname;
   };
 
   fonts = {
@@ -40,14 +40,16 @@
     variables = { EDITOR = "vim"; };
   };
 
+  home-manager.backupFileExtension = ".before-nix-darwin";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users."${systemVars.user}" = {
+  home-manager.users."${user}" = {
     home.stateVersion = "22.05";
-    programs = import ./programs.nix { inherit pkgs systemVars; };
+    programs = import ./programs.nix { inherit pkgs; };
   };
 
+  home-manager.sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt fishPlugins.z ]; }];
   homebrew = import ./homebrew.nix;
   system = import ./system.nix;
 

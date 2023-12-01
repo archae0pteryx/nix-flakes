@@ -1,4 +1,4 @@
-{ systemVars, pkgs, ... }: {
+{ pkgs, ... }: {
   enable = true;
   plugins = [
     {
@@ -48,7 +48,8 @@
     dcdv = "docker compose down -v --remove-orphans";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    darwinbuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+    eyepopbuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#eyepop";
+    clairebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#claire";
     l = "ls -al";
     k = "kubectl";
     kc = "kubectl config";

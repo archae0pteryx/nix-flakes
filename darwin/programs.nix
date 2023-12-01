@@ -1,6 +1,6 @@
-{ systemVars, pkgs, ... }: {
+{ pkgs, ... }: {
   go.enable = true;
-  fish = import ./fish.nix { inherit systemVars pkgs; };
+  fish = import ./fish.nix { inherit pkgs; };
   gitui = {
     enable = true;
   };
@@ -9,7 +9,7 @@
     userName = "archae0pteryx";
     diff-so-fancy.enable = true;
     userEmail = "github@pocketcereal.com";
-    ignores = [ ".DS_Store" "tmp" "node_modules" ".vscode" ];
+    ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
     extraConfig = {
       pull = { ff = "only"; };
       user = { signingKey = "~/.ssh/id_ed25519.pub"; };

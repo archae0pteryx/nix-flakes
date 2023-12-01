@@ -11,29 +11,38 @@
 
   outputs = inputs@{ self, darwin, nixpkgs, home-manager }:
     let
-      systemVars = {
-        user = "rimraf";
-        hostname = "claire";
-        system = "x86_64-darwin";
-      };
-      configuration = { pkgs, ... }: {
-        services.nix-daemon.enable = true;
-        nix.package = pkgs.nix;
-        nix.settings.experimental-features = "nix-command flakes";
-        nix.settings.auto-optimise-store = true;
-        system.stateVersion = 4;
-        nixpkgs.hostPlatform = systemVars.system;
-        nixpkgs.config.allowUnfree = true;
-        system.configurationRevision = self.rev or self.dirtyRev or null;
-      };
+      mkConfig = { hostname, system, user }:
+        darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = { inherit inputs system user hostname; };
+
+          modules = [
+            ({ pkgs, ... }: {
+              services.nix-daemon.enable = true;
+              nix.package = pkgs.nix;
+              nix.settings.experimental-features = "nix-command flakes";
+              nix.settings.auto-optimise-store = true;
+              system.stateVersion = 4;
+              nixpkgs.hostPlatform = system;
+              nixpkgs.config.allowUnfree = true;
+              system.configurationRevision = self.rev or self.dirtyRev or null;
+            })
+            ./darwin
+            home-manager.darwinModules.home-manager
+          ];
+        };
     in {
-      darwinConfigurations."${systemVars.hostname}" = darwin.lib.darwinSystem {
-        system = systemVars.system;
-        specialArgs = { inherit inputs systemVars; };
-        modules =
-          [ ./darwin configuration home-manager.darwinModules.home-manager ];
+      darwinConfigurations = {
+        eyepop = mkConfig {
+          hostname = "eyepop";
+          system = "aarch64-darwin";
+          user = "rimraf";
+        };
+        claire = mkConfig {
+          hostname = "claire";
+          system = "x86_64-darwin";
+          user = "rimraf";
+        };
       };
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."${systemVars.hostname}".pkgs;
     };
 }
