@@ -2,7 +2,6 @@
   enable = true;
   brews = [
     "act"
-    "adwaita-icon-theme"
 		"ansible"
 		"ansible-lint"
     "awscli"
@@ -37,6 +36,7 @@
     "nmap"
     "opencv"
     "pango"
+    "picocom"
     "pkg-config"
     "pyenv"
     "pytorch"
@@ -50,7 +50,6 @@
     "tmux"
     "trash"
     "volta"
-    "wireshark"
     "yt-dlp"
   ];
   casks = [
@@ -88,6 +87,7 @@
     "visual-studio-code"
     "vlc"
     "whatsapp"
+    "wireshark"
     "zoom"
   ];
   taps = [

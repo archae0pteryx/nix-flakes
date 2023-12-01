@@ -1,9 +1,8 @@
 - [nix-darwin docs](https://daiderd.com/nix-darwin/)``
 
 ```shell
-# when you fuck up again, heres the info to get back on track...
-
-# source this
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# when you fuck up again, heres the rc and build
 . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # resetup nix darwin

@@ -13,8 +13,8 @@
     let
       systemVars = {
         user = "rimraf";
-        hostname = "eyepop";
-        system = "aarch64-darwin";
+        hostname = "claire";
+        system = "x86_64-darwin";
       };
       configuration = { pkgs, ... }: {
         services.nix-daemon.enable = true;
