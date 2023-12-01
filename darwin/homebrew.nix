@@ -10,6 +10,7 @@
     "cmake"
     "coreutils"
     "doctl"
+		"dotnet"
     "ffmpeg"
     "fzf"
     "glib"
