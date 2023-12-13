@@ -247,6 +247,8 @@
 			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
+			<key>Custom Tab Title</key>
+			<string>NO_FLOAT</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -636,6 +638,8 @@
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
+			<true/>
+			<key>Use Custom Tab Title</key>
 			<true/>
 			<key>Use Italic Font</key>
 			<true/>
