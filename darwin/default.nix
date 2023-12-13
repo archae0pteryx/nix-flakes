@@ -39,13 +39,14 @@
     systemPackages = with pkgs; [ vim wget nixfmt wireguard-tools wireguard-go ];
     variables = { EDITOR = "vim"; };
   };
-
+  
   home-manager.backupFileExtension = ".before-nix-darwin";
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
   home-manager.users."${user}" = {
     home.stateVersion = "22.05";
+    home.file = import ./dotfiles.nix;
     programs = import ./programs.nix { inherit pkgs; };
   };
 

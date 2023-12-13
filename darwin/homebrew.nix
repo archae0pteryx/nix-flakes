@@ -96,6 +96,7 @@
   ];
   taps = [
     "hashicorp/tap"
+    "stripe/stripe-cli"
   ];
   onActivation = {
     autoUpdate = true;
