@@ -37,6 +37,7 @@
     "opencv"
     "pango"
     "picocom"
+    "pinentry-mac"
     "pkg-config"
     "pyenv"
     "pytorch"

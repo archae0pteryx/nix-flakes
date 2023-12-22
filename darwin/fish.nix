@@ -19,18 +19,39 @@
         sha256 = "sha256-e8gIaVbuUzTwKtuMPNXBT5STeddYqQegduWBtURLT3M=";
       };
     }
+    {
+      name = "fzf";
+      src = pkgs.fetchFromGitHub {
+        owner = "PatrickF1";
+        repo = "fzf.fish";
+        rev = "85503fbc4b6026c616dd5dc8ebb4cfb82e1ef16c";
+        sha256 = "sha256-1/MLKkUHe4c9YLDrH+cnL+pLiSOSERbIZSM4FTG3wF0=";
+      };
+    }
+    {
+      name = "autopair";
+      src = pkgs.fetchFromGitHub {
+        owner = "jorgebucaran";
+        repo = "autopair.fish";
+        rev = "244bb1ebf74bf944a1ba1338fc1026075003c5e3";
+        sha256 = "sha256-e8gIaVbuUzTwKtuMPNXBT5STeddYqQegduWBtURLT3M=";
+      };
+    }
   ];
   interactiveShellInit = ''
     if test (uname -m) = "arm64"
         eval (/opt/homebrew/bin/brew shellenv)
     end
+    set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
+    set -gx PATH "/usr/local/lib" $PATH
     set -gx PATH "$HOME/.cargo/bin" $PATH
     set -gx VOLTA_HOME "$HOME/.volta"
     set -gx PATH "$VOLTA_HOME/bin" $PATH
     set -gx PATH "$HOME/.local/bin" $PATH
+
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-    set -Ux ZO_METHOD "code"
+    pyenv init - | source
   '';
   shellAliases = {
     p = "ping 8.8.8.8";
