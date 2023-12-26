@@ -50,7 +50,7 @@
     programs = import ./programs.nix { inherit pkgs; };
   };
 
-  home-manager.sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt fishPlugins.z ]; }];
+  home-manager.sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
   homebrew = import ./homebrew.nix;
   system = import ./system.nix;
 

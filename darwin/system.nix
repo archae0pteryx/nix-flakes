@@ -24,7 +24,7 @@
       ShowPathbar = true;
       ShowStatusBar = true;
     };
-    loginwindow = { LoginwindowText = "******** 8==) ********"; };
+    loginwindow = { LoginwindowText = "8====)"; };
     spaces.spans-displays = false;
     trackpad.Clicking = true;
   };

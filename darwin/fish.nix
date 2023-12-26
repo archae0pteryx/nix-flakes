@@ -37,8 +37,17 @@
         sha256 = "sha256-e8gIaVbuUzTwKtuMPNXBT5STeddYqQegduWBtURLT3M=";
       };
     }
+    {
+      name = "z";
+      src = pkgs.fetchFromGitHub {
+        owner = "jethrokuan";
+        repo = "z";
+        rev = "1c7ae8ca7012cf9ebfc4ff023b08646f75ecc240";
+        sha256 = "sha256-e8gIaVbuUzTwKtuMPNXBT5STeddYqQegduWBtURLT3M=";
+      };
+    }
   ];
-  interactiveShellInit = ''
+  shellInit = ''
     if test (uname -m) = "arm64"
         eval (/opt/homebrew/bin/brew shellenv)
     end
@@ -48,6 +57,7 @@
     set -gx VOLTA_HOME "$HOME/.volta"
     set -gx PATH "$VOLTA_HOME/bin" $PATH
     set -gx PATH "$HOME/.local/bin" $PATH
+    set -Ux ZO_METHOD "code"
 
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
@@ -86,5 +96,7 @@
     c = "cd ~/Code";
     desk = "cd ~/Desktop";
     eyepop = "cd ~/Code/eyepop";
+		webapi = "cd ~/Code/eyepop/eyepop-web-api";
+		webapp = "cd ~/Code/eyepop/eyepop-vercel";
   };
 }
