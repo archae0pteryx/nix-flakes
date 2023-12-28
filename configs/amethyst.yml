@@ -267,10 +267,13 @@ window-minimum-width: 0
 # List of bundle identifiers for applications to either be automatically floating or automatically tiled based on floating-is-blacklist (default []).
 floating: [
   com.googlecode.iterm2,
-  io.github.hluk.CopyQ
-  net.mullvad.vpn
-  com.resilio.Sync
-  com.apple.Messages
+  io.github.hluk.CopyQ,
+  net.mullvad.vpn,
+  com.resilio.Sync,
+  com.apple.Messages,
+	com.apple.Finder,
+	com.epicgames.UnrealEditor,
+	com.epicgames.EpicGamesLauncher
 ]
 
 # Boolean flag determining behavior of the floating list. true if the applications should be floating and all others tiled. false if the applications should be tiled and all others floating (default true).

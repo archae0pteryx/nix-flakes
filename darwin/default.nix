@@ -36,7 +36,7 @@
 
   environment = {
     shells = with pkgs; [ bashInteractive fish zsh ];
-    systemPackages = with pkgs; [ vim wget nixfmt wireguard-tools wireguard-go ];
+    systemPackages = with pkgs; [ vim wget nixfmt ];
     variables = { EDITOR = "vim"; };
   };
   

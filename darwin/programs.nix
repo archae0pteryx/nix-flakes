@@ -22,15 +22,16 @@
 
   vim = {
     enable = true;
+		settings = {
+			relativenumber = true;
+			expandtab = true;
+			mouse = "a";
+			shiftwidth = 4;
+			tabstop = 4;
+		};
     extraConfig = ''
-      set rnu
       colorscheme habamax
       syntax on
-      set mouse=a
-      set softtabstop=4
-      set tabstop=4
-      set shiftwidth=4
-      set expandtab
     '';
   };
 }
