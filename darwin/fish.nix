@@ -72,6 +72,7 @@
     gc = "git commit -S -m";
     gp = "git push";
     dc = "docker-compose";
+    dcstopall = "docker-compose down --remove-orphans && docker ps -aq | xargs docker stop";
     dcb = "docker-compose build";
     dcr = "docker-compose run --rm";
     dcu = "docker-compose up";
@@ -98,5 +99,8 @@
     eyepop = "cd ~/Code/eyepop";
 		webapi = "cd ~/Code/eyepop/eyepop-web-api";
 		webapp = "cd ~/Code/eyepop/eyepop-vercel";
+    kns = "kubens";
+    kx = "kubectx";
+    rm = "trash";
   };
 }
