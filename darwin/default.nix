@@ -36,8 +36,8 @@
 
   environment = {
     shells = with pkgs; [ bashInteractive fish zsh ];
-    systemPackages = with pkgs; [ vim wget nixfmt ];
-    variables = { EDITOR = "vim"; };
+    systemPackages = with pkgs; [ vim neovim lynx wget nixfmt ];
+    variables = { EDITOR = "nvim"; };
   };
   
   home-manager.backupFileExtension = ".before-nix-darwin";

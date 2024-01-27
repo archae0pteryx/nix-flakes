@@ -64,6 +64,7 @@
     pyenv init - | source
   '';
   shellAliases = {
+	  askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
     p = "ping 8.8.8.8";
     config = "cd ~/.config/nix-darwin && vim ~/.config/nix-darwin";
     fishconfig = "cd ~/.config/fish && vim ~/.config/fish";

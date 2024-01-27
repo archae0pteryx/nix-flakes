@@ -20,7 +20,7 @@ layouts:
   # - tall-right
   # - wide
   # - two-pane
-  # - middle-wide
+  - middle-wide
   # - 3column-left
   # - 3column-middle
   # - 3column-right
@@ -31,7 +31,7 @@ layouts:
   - floating
   # - widescreen-tall
   # - widescreen-tall-right
-  # - bsp
+  - bsp
 
 # First mod (default option + shift).
 mod1:

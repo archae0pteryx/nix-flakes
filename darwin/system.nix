@@ -8,7 +8,7 @@
     CustomUserPreferences = import ./preferences.nix;
     dock = {
       autohide = true;
-      orientation = "right";
+      orientation = "left";
       tilesize = 20;
       launchanim = false;
       mineffect = "scale";

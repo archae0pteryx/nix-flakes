@@ -2,7 +2,6 @@
   enable = true;
   brews = [
 		"ansible"
-		"ansible-lint"
 		"autoconf"
     "awscli"
     "awsebcli"
@@ -30,6 +29,7 @@
 		"m4"
     "minikube"
     "nmap"
+		"neovim"
     "opencv"
     "picocom"
     "pinentry-mac"
