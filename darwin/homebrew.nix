@@ -66,6 +66,7 @@
     "iterm2"
     "keepassxc"
     "lens"
+		"little-snitch"
     "logseq"
     "mullvadvpn"
 		"mysqlworkbench"
