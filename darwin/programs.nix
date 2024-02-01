@@ -11,7 +11,8 @@
     userEmail = "github@pocketcereal.com";
     ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
     extraConfig = {
-      pull = { ff = "only"; };
+      pull = { ff = "yes"; rebase = "yes"; };
+			merge = { ff = "no"; commit = "no"; };
       user = { signingKey = "~/.ssh/id_ed25519.pub"; };
       gpg = { format = "ssh"; };
       commit = { gpgSign = true; };
