@@ -46,6 +46,7 @@
     "terragrunt"
     "tmux"
     "trash"
+		"vercel-cli"
     "volta"
     "yt-dlp"
   ];
@@ -75,6 +76,7 @@
     "resilio-sync"
     "signal"
     "slack"
+		"sourcetree"
 		"spectacle"
     "spotify"
     "telegram"
