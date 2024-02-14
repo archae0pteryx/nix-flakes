@@ -35,13 +35,14 @@
           specialArgs = { inherit inputs system user hostname; };
           modules = [
             ({ pkgs, system, ... }: {
-              system.configurationRevision = self.rev or self.dirtyRev or null;
-              system.stateVersion = 4;
               services.nix-daemon.enable = true;
+              nix.package = pkgs.nix;
               nix.settings.experimental-features = "nix-command flakes";
               nix.settings.auto-optimise-store = true;
+              system.stateVersion = 4;
               nixpkgs.hostPlatform = system;
               nixpkgs.config.allowUnfree = true;
+              system.configurationRevision = self.rev or self.dirtyRev or null;
             })
             (mkCommon { inherit system pkgs hostname user; })
             ./darwin

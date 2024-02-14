@@ -1,4 +1,4 @@
-{ pkgs, user, system, ... }: {
+{ pkgs, hostname, user, system, ... }: {
   networking = {
     computerName = hostname;
     hostName = hostname;

@@ -1,4 +1,4 @@
-{ pkgs, user, hostname, ... }: {
+{ pkgs, user, ... }: {
 
   home-manager.users."${user}" = {
     home.stateVersion = "22.05";
