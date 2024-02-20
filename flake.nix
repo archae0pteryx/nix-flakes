@@ -1,73 +1,74 @@
 {
-  description = "macOS rimraf";
+  description = "rimraf nixos";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # NEEDS TO BE SWITCHED IF ON MAC OR LINUX
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # darwin.url = "github:LnL7/nix-darwin";
+    # darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # home-manager.url = "github:nix-community/home-manager";
+    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, home-manager }:
-    let
-      mkPkgs = system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ ];
-        };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    # Supported systems for your flake packages, shell, etc.
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    # Your custom packages
+    # Accessible through 'nix build', 'nix shell', etc
+    packages = forAllSystems (system: import ./linux/pkgs nixpkgs.legacyPackages.${system});
+    # Formatter for your nix files, available through 'nix fmt'
+    # Other options beside 'alejandra' include 'nixpkgs-fmt'
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-      mkCommon = { system, pkgs, hostname, user, ... }:
-        import ./common { inherit system pkgs hostname user; };
+    # Your custom packages and modifications, exported as overlays
+    overlays = import ./linux/overlays {inherit inputs;};
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    nixosModules = import ./linux/modules/nixos;
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    homeManagerModules = import ./linux/modules/home-manager;
 
-      mkNixos = { hostname, system, user }:
-        let pkgs = mkPkgs system;
-        in nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules =
-            [ (mkCommon { inherit system pkgs hostname user; }) ./nixos ];
-        };
-
-      mkConfig = { hostname, system, user }:
-        let pkgs = mkPkgs system;
-        in darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = { inherit inputs system user hostname; };
-          modules = [
-            ({ pkgs, system, ... }: {
-              services.nix-daemon.enable = true;
-              nix.package = pkgs.nix;
-              nix.settings.experimental-features = "nix-command flakes";
-              nix.settings.auto-optimise-store = true;
-              system.stateVersion = 4;
-              nixpkgs.hostPlatform = system;
-              nixpkgs.config.allowUnfree = true;
-              system.configurationRevision = self.rev or self.dirtyRev or null;
-            })
-            (mkCommon { inherit system pkgs hostname user; })
-            ./darwin
-            home-manager.darwinModules.home-manager
-          ];
-        };
-    in {
-      darwinConfigurations = {
-        eyepop = mkConfig {
-          hostname = "eyepop";
-          system = "aarch64-darwin";
-          user = "rimraf";
-        };
-        claire = mkConfig {
-          hostname = "claire";
-          system = "x86_64-darwin";
-          user = "rimraf";
-        };
-      };
-      nixosConfigurations = {
-        nixos = mkNixos {
-          hostname = "nixos";
-          system = "x86_64-linux";
-          user = "rimraf";
-        };
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./linux/nixos/configuration.nix
+        ];
       };
     };
+    darwinConfigurations = {
+      eyepop = nixpkgs.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./darwin
+        ];
+      };
+    };
+  };
 }
