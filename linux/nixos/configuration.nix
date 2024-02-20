@@ -93,7 +93,8 @@
       vscode
       keepassxc
       copyq
-    #  thunderbird
+      thunderbird
+      python3
     ];
   };
 

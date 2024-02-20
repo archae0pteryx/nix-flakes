@@ -21,7 +21,6 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
@@ -55,12 +54,19 @@
   home.packages = with pkgs; [
     spotify
     slack
-
   ];
-
 
   programs.home-manager.enable = true;
   programs = {
+    bash = {
+      interactiveShellInit = ''
+        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+        then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+        fi
+      '';
+    };
     bash.enable = true;
     zsh.enable = true;
     go.enable = true;
@@ -75,15 +81,16 @@
       userEmail = "github@pocketcereal.com";
       ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
       extraConfig = {
-        # user = { signingKey = "~/.ssh/id_ed25519.pub"; };
-        # gpg = { format = "ssh"; };
-        # commit = { gpgSign = true; };
+        user = { signingKey = "~/.ssh/id_ed25519.pub"; };
+        gpg = { format = "ssh"; };
+        commit = { gpgSign = true; };
       };
     };
 
     gh.enable = true;
     vim = import ./vim.nix { inherit pkgs; };
   };
+
 
 
   # Nicely reload system units when changing configs

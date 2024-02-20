@@ -18,15 +18,7 @@
         };
 
       mkCommon = { system, pkgs, hostname, user, ... }:
-        import ./common { inherit system pkgs hostname user; };
-
-      mkNixos = { hostname, system, user }:
-        let pkgs = mkPkgs system;
-        in nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules =
-            [ (mkCommon { inherit system pkgs hostname user; }) ./nixos ];
-        };
+        import ../common { inherit system pkgs hostname user; };
 
       mkConfig = { hostname, system, user }:
         let pkgs = mkPkgs system;
@@ -59,13 +51,6 @@
         claire = mkConfig {
           hostname = "claire";
           system = "x86_64-darwin";
-          user = "rimraf";
-        };
-      };
-      nixosConfigurations = {
-        nixos = mkNixos {
-          hostname = "nixos";
-          system = "x86_64-linux";
           user = "rimraf";
         };
       };
