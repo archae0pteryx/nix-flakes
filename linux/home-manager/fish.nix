@@ -48,26 +48,37 @@
     }
   ];
   shellInit = ''
-    if test (uname -m) = "arm64"
-        eval (/opt/homebrew/bin/brew shellenv)
-    end
-    set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
-    set -gx PATH "/usr/local/lib" $PATH
-    set -gx PATH "$HOME/.cargo/bin" $PATH
-    set -gx VOLTA_HOME "$HOME/.volta"
-    set -gx PATH "$VOLTA_HOME/bin" $PATH
-    set -gx PATH "$HOME/.local/bin" $PATH
-    set -Ux ZO_METHOD "code"
+    switch (uname -s)
+    case Darwin
+      if test (uname -m) = "arm64"
+          eval (/opt/homebrew/bin/brew shellenv)
+      end
 
-    set -Ux PYENV_ROOT $HOME/.pyenv
-    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-    pyenv init - | source
+      set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
+      set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
+      set -Ux ZO_METHOD "code"
+      if type -q pyenv
+        set -Ux PYENV_ROOT $HOME/.pyenv
+        set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+        pyenv init - | source
+
+      end
+    end
+
+    set -gx VOLTA_HOME "$HOME/.volta"
+
+    set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+    set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
+    set -U fish_user_paths $VOLTA_HOME/bin $fish_user_paths
+
   '';
+
   shellAliases = {
 	  askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
     p = "ping 8.8.8.8";
-    config = "cd ~/.config/nix-darwin && vim ~/.config/nix-darwin";
-    fishconfig = "cd ~/.config/fish && vim ~/.config/fish";
+    config = "cd ~/.config/nix-darwin && vim ~/.config/rimraf-flakes";
+    fishconfig = "vim ~/.config/rimraf-flakes";
+    flakeconfig = "vim ~/.config/rimraf-flakes";
     gco = "git checkout";
     gcob = "git checkout -b";
     gc = "git commit -S -m";
@@ -81,8 +92,9 @@
     dcdv = "docker-compose down -v --remove-orphans";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    eyepopbuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#eyepop";
-    clairebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#claire";
+    eyepopbuild = "darwin-rebuild switch --flake ~/.config/rimraf-flakes/darwin#eyepop";
+    clairebuild = "darwin-rebuild switch --flake ~/.config/rimraf-flakes/darwin#claire";
+    nixbuild = "sudo nixos-rebuild switch --flake ~/.config/rimraf-flakes/linux#nixos";
     l = "ls -al";
     k = "kubectl";
     kc = "kubectl config";
