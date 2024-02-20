@@ -7,14 +7,14 @@
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  # Bootloader.
-  nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = "nix-command flakes";
+  nix.package = pkgs.nixFlakes;
+
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -91,7 +91,13 @@
       thunderbird
       python3
     ];
+    openssh.authorizedKeys = {
+      keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINszvFgzScCNxT0vRlZ4fjRTZzc7yTs8P/uNJYraoAXk"
+      ];
+    };
   };
+  services.openssh.enable = true;
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
@@ -100,26 +106,17 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     git
+    nixfmt
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -130,7 +127,6 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
-      # Import your home-manager configuration
       rimraf = import ../home-manager/home.nix;
     };
   };

@@ -58,6 +58,16 @@
 
   programs.home-manager.enable = true;
   programs = {
+    fzf.enable = true;
+    gpg.enable = true;
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        Host *
+          AddKeysToAgent yes
+          IdentityFile ~/.ssh/id_ed25519
+      '';
+    };
     bash.enable = true;
     zsh.enable = true;
     go.enable = true;
@@ -77,13 +87,17 @@
         commit = { gpgSign = true; };
       };
     };
-
     gh.enable = true;
     vim = import ./vim.nix { inherit pkgs; };
   };
-
-
-
+  services.ssh-agent.enable = true;
+  services.gpg-agent.enable = true;
+  services.gpg-agent.extraConfig = ''
+    default-cache-ttl 34560000
+    max-cache-ttl 34560000
+  '';
+  services.gpg-agent.enableSshSupport = true;
+  services.gpg-agent.sshKeys = [ "~/.ssh/id_ed25519" ];
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
