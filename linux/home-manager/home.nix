@@ -58,35 +58,8 @@
     nixfmt
     nixpkgs-fmt
   ];
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      source-code-pro
-      font-awesome
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
-  };
-  go.enable = true;
-  fish = import ./fish.nix { inherit pkgs; };
-  gitui = {
-    enable = true;
-  };
-  git = {
-    enable = true;
-    userName = "archae0pteryx";
-    diff-so-fancy.enable = true;
-    userEmail = "github@pocketcereal.com";
-    ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
-    extraConfig = {
-      user = { signingKey = "~/.ssh/id_ed25519.pub"; };
-      gpg = { format = "ssh"; };
-      commit = { gpgSign = true; };
-    };
-  };
 
-  gh.enable = true;
-  vim = import ./vim.nix { inherit pkgs; };
-  # Enable home-manager and git
+
   programs.home-manager.enable = true;
   programs.git.enable = true;
   programs = {
