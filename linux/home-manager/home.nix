@@ -54,6 +54,7 @@
   home.packages = with pkgs; [
     spotify
     slack
+    rmtrash
   ];
 
   programs.home-manager.enable = true;
@@ -63,9 +64,9 @@
     ssh = {
       enable = true;
       extraConfig = ''
-        Host *
-          AddKeysToAgent yes
-          IdentityFile ~/.ssh/id_ed25519
+    Host github.com
+      AddKeysToAgent yes
+      IdentityFile ~/.ssh/id_ed25519
       '';
     };
     bash.enable = true;

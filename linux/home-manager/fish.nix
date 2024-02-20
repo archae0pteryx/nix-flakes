@@ -63,6 +63,9 @@
         pyenv init - | source
 
       end
+      set -s rm "trash"
+    case Linux
+      set -s rm "rmtrash"
     end
 
     set -gx VOLTA_HOME "$HOME/.volta"
@@ -109,11 +112,7 @@
     dls = "cd ~/Downloads";
     c = "cd ~/Code";
     desk = "cd ~/Desktop";
-    eyepop = "cd ~/Code/eyepop";
-		webapi = "cd ~/Code/eyepop/eyepop-web-api";
-		webapp = "cd ~/Code/eyepop/eyepop-vercel";
     kns = "kubens";
     kx = "kubectx";
-    rm = "trash";
   };
 }
