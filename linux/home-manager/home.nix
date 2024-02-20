@@ -61,16 +61,32 @@
 
 
   programs.home-manager.enable = true;
-  programs.git.enable = true;
   programs = {
     bash.enable = true;
     zsh.enable = true;
-    fish.enable = true;
-    gnupg.agent = {
+    go.enable = true;
+    fish = import ./fish.nix { inherit pkgs; };
+    gitui = {
       enable = true;
-      enableSSHSupport = true;
     };
+    git = {
+      enable = true;
+      userName = "archae0pteryx";
+      diff-so-fancy.enable = true;
+      userEmail = "github@pocketcereal.com";
+      ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
+      extraConfig = {
+        # user = { signingKey = "~/.ssh/id_ed25519.pub"; };
+        # gpg = { format = "ssh"; };
+        # commit = { gpgSign = true; };
+      };
+    };
+
+    gh.enable = true;
+    vim = import ./vim.nix { inherit pkgs; };
   };
+
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
