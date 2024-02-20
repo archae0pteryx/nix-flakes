@@ -81,9 +81,14 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
+  programs.fish.enable = true;
+  programs.bash.enable = true;
+  programs.zsh.enable = true;
+  programs.gpg.enable = true;
+  users.defaultShell = pkgs.fish;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rimraf = {
+    shell = pkgs.fish;
     isNormalUser = true;
     description = "rimraf";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -112,7 +117,15 @@
     wget
     git
   ];
-
+  bash = {
+    interactiveShellInit = ''
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
