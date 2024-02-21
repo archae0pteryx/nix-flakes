@@ -56,41 +56,41 @@
     slack
     rmtrash
   ];
-
-  programs.home-manager.enable = true;
-  programs = {
-    fzf.enable = true;
-    gpg.enable = true;
-    ssh = {
-      enable = true;
-      extraConfig = ''
-    Host github.com
-      AddKeysToAgent yes
-      IdentityFile ~/.ssh/id_ed25519
-      '';
-    };
-    bash.enable = true;
-    zsh.enable = true;
-    go.enable = true;
-    fish = import ./fish.nix { inherit pkgs; };
-    gitui = {
-      enable = true;
-    };
-    git = {
-      enable = true;
-      userName = "archae0pteryx";
-      diff-so-fancy.enable = true;
-      userEmail = "github@pocketcereal.com";
-      ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
-      extraConfig = {
-        user = { signingKey = "~/.ssh/id_ed25519.pub"; };
-        gpg = { format = "ssh"; };
-        commit = { gpgSign = true; };
-      };
-    };
-    gh.enable = true;
-    vim = import ./vim.nix { inherit pkgs; };
-  };
+  programs = import ./programs.nix { inherit pkgs; };
+  # programs.home-manager.enable = true;
+  # programs = {
+  #   fzf.enable = true;
+  #   gpg.enable = true;
+  #   ssh = {
+  #     enable = true;
+  #     extraConfig = ''
+  #   Host github.com
+  #     AddKeysToAgent yes
+  #     IdentityFile ~/.ssh/id_ed25519
+  #     '';
+  #   };
+  #   bash.enable = true;
+  #   zsh.enable = true;
+  #   go.enable = true;
+  #   fish = import ./fish.nix { inherit pkgs; };
+  #   gitui = {
+  #     enable = true;
+  #   };
+  #   git = {
+  #     enable = true;
+  #     userName = "archae0pteryx";
+  #     diff-so-fancy.enable = true;
+  #     userEmail = "github@pocketcereal.com";
+  #     ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
+  #     extraConfig = {
+  #       user = { signingKey = "~/.ssh/id_ed25519.pub"; };
+  #       gpg = { format = "ssh"; };
+  #       commit = { gpgSign = true; };
+  #     };
+  #   };
+  #   gh.enable = true;
+  #   vim = import ./vim.nix { inherit pkgs; };
+  # };
   services.ssh-agent.enable = true;
   services.gpg-agent.enable = true;
   services.gpg-agent.extraConfig = ''
@@ -101,7 +101,7 @@
   services.gpg-agent.sshKeys = [ "~/.ssh/id_ed25519" ];
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-  
+
   xfconf.settings = import ./xfconf.nix;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
