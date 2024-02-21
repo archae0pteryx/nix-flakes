@@ -6,4 +6,5 @@
   xsettings = import ./xsettings.nix;
   xfce4-screensaver = import ./xfce4-screensaver.nix;
   xfce4-power-manager = import ./xfce4-power-manager.nix;
+  xfce4-keyboard-shortcuts = import ./xfce4-keyboard-shortcuts.nix;
 }
