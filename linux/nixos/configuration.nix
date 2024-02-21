@@ -76,6 +76,7 @@
 
   programs.fish.enable = true;
   programs.zsh.enable = true;
+  programs.xfconf.enable = true;
 
   users.users.rimraf = {
     shell = pkgs.fish;
