@@ -3,6 +3,8 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./xrandr.nix
+    ./nvdia.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
