@@ -101,6 +101,8 @@
   services.gpg-agent.sshKeys = [ "~/.ssh/id_ed25519" ];
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+  
+  xfconf.settings = import ./xfconf.nix;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.11";
