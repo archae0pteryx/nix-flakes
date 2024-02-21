@@ -128,7 +128,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
-      rimraf = import ../home-manager/home.nix;
+      rimraf = import ../home-manager;
     };
   };
 
