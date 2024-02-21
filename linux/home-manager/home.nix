@@ -52,9 +52,17 @@
   };
 
   home.packages = with pkgs; [
+    zoom
     spotify
     slack
     rmtrash
+    firefox
+    rofi
+    vscode
+    keepassxc
+    copyq
+    thunderbird
+    python3
   ];
 
   programs = import ./programs { inherit pkgs; };

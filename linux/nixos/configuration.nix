@@ -84,13 +84,13 @@
     description = "rimraf";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      rofi
-      vscode
-      keepassxc
-      copyq
-      thunderbird
-      python3
+      # firefox
+      # rofi
+      # vscode
+      # keepassxc
+      # copyq
+      # thunderbird
+      # python3
     ];
     openssh.authorizedKeys = {
       keys = [
@@ -128,7 +128,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
-      rimraf = import ../home-manager;
+      rimraf = import ../home-manager/home.nix;
     };
   };
 
