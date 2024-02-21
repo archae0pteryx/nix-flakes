@@ -24,7 +24,7 @@
 
 {
   "dropdown-width" = 100;
-  "dropdown-height" = 60;
+  "dropdown-height" = 20;
   # "channel": {
   #   "name": "xfce4-terminal",
   #   "version": "1.0",
