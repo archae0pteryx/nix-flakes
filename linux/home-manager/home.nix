@@ -56,7 +56,8 @@
     slack
     rmtrash
   ];
-  programs = import ./programs.nix { inherit pkgs; };
+  
+  programs = import ./programs { inherit pkgs; };
   services = import ./services.nix {};
 
   # Nicely reload system units when changing configs
