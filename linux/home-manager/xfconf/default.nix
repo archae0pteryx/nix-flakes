@@ -4,4 +4,5 @@
   pointers = import ./pointers.nix;
   xfwm4 = import ./xfwm4.nix;
   xsettings = import ./xsettings.nix;
+  xfce4-screensaver = import ./xfce4-screensaver.nix;
 }
