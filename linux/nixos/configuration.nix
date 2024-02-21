@@ -1,11 +1,10 @@
 { config, pkgs, inputs, outputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   nix.settings.experimental-features = "nix-command flakes";
   nix.package = pkgs.nixFlakes;
@@ -45,6 +44,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # TODO: DIsplay settings
+  # services.xserver.xrandrHeads = [ ];
+
   # Enable the XFCE Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
@@ -83,15 +85,7 @@
     isNormalUser = true;
     description = "rimraf";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      # firefox
-      # rofi
-      # vscode
-      # keepassxc
-      # copyq
-      # thunderbird
-      # python3
-    ];
+    packages = with pkgs; [ firefox rofi copyq ];
     openssh.authorizedKeys = {
       keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINszvFgzScCNxT0vRlZ4fjRTZzc7yTs8P/uNJYraoAXk"
@@ -107,12 +101,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    nixfmt
-  ];
+  environment.systemPackages = with pkgs; [ vim wget git nixfmt ];
 
   programs.gnupg.agent = {
     enable = true;
@@ -127,9 +116,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      rimraf = import ../home-manager/home.nix;
-    };
+    users = { rimraf = import ../home-manager/home.nix; };
   };
 
   # This value determines the NixOS release from which the default

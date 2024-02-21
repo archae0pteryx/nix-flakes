@@ -19,14 +19,7 @@
     };
   };
 
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      source-code-pro
-      font-awesome
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
-  };
+  fonts.fontconfig.enable = true;
 
   home = {
     username = "rimraf";
@@ -45,6 +38,7 @@
       python3
       xbindkeys
       xautomation
+      nerdfonts
     ];
   };
 
