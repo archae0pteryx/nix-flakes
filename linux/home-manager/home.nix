@@ -24,22 +24,7 @@
   home = {
     username = "rimraf";
     homeDirectory = "/home/rimraf";
-    packages = with pkgs; [
-      zoom
-      spotify
-      slack
-      rmtrash
-      firefox
-      rofi
-      vscode
-      keepassxc
-      copyq
-      thunderbird
-      python3
-      xbindkeys
-      xautomation
-      nerdfonts
-    ];
+    packages = with pkgs; (import ./packages.nix);
   };
 
   programs = import ./programs { inherit pkgs; };

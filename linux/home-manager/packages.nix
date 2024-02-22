@@ -1,0 +1,16 @@
+[
+  zoom
+  spotify
+  slack
+  rmtrash
+  firefox
+  rofi
+  vscode
+  keepassxc
+  copyq
+  thunderbird
+  python3
+  xbindkeys
+  xautomation
+  nerdfonts
+]
