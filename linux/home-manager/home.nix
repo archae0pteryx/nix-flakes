@@ -1,5 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ ];
+  imports = [
+  ];
 
   nixpkgs = {
     overlays = [
@@ -27,12 +28,11 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
+  # xdg = import ./xdg;
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };
   xfconf.settings = import ./xfconf;
-  xdg = import ./xdg;
-
   systemd.user.startServices = "sd-switch";
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.11";

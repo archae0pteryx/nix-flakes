@@ -4,8 +4,8 @@
     "terminal" = {
       enable = true;
       recursive = true;
-      source = "terminal";
-      target = "xfce4";
+      source = "/home/rimraf/.config/rimraf-flakes/linux/home-manager/xdg/terminal";
+      target = "./xfce4";
     };
   };
 }
