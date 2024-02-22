@@ -1,4 +1,6 @@
-[
+{ pkgs, ... }:
+
+with pkgs; [
   zoom
   spotify
   slack

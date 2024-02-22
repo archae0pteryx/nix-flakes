@@ -24,14 +24,16 @@
   home = {
     username = "rimraf";
     homeDirectory = "/home/rimraf";
-    packages = with pkgs; (import ./packages.nix);
+    packages = import ./packages.nix { inherit pkgs; };
   };
+
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };
   xfconf.settings = import ./xfconf;
-  systemd.user.startServices = "sd-switch";
+  xdg = import ./xdg;
 
+  systemd.user.startServices = "sd-switch";
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.11";
 }
