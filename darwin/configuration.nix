@@ -51,7 +51,7 @@
     sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
   };
 
-  system = import ./system.nix;
+  # system = import ./system.nix;
   homebrew = import ./homebrew.nix;
   # programs = import ./programs.nix { inherit pkgs; };
   # system = import ./system.nix;

@@ -11,4 +11,5 @@
     git = import ./git.nix;
     vim = import ./vim.nix;
   };
+  system = import ../system.nix { inherit pkgs; };
 }

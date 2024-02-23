@@ -87,10 +87,12 @@
           system.configurationRevision = self.rev or self.dirtyRev or null;
           modules =
             [ ./configuration.nix home-manager.darwinModules.home-manager ];
-        };
-        claire = darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./configuration.nix ];
+          claire = darwin.lib.darwinSystem {
+            specialArgs = { inherit inputs outputs; };
+            system.configurationRevision = self.rev or self.dirtyRev or null;
+            modules =
+              [ ./configuration.nix home-manager.darwinModules.home-manager ];
+          };
         };
       };
     };
