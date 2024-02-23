@@ -57,36 +57,6 @@
 #     };
 # }
 
-#   outputs = { self, nixpkgs, home-manager, ... }@inputs:
-#     let
-#       inherit (self) outputs;
-#       systems = [
-#         "aarch64-linux"
-#         "i686-linux"
-#         "x86_64-linux"
-#         "aarch64-darwin"
-#         "x86_64-darwin"
-#       ];
-#       forAllSystems = nixpkgs.lib.genAttrs systems;
-#     in {
-#       packages =
-#         forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-#       formatter =
-#         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
-#       overlays = import ./overlays { inherit inputs; };
-#       nixosModules = import ./modules/nixos;
-#       homeManagerModules = import ./modules/home-manager/home.nix;
-#       nixosConfigurations = {
-#         nixos = nixpkgs.lib.nixosSystem {
-#           specialArgs = { inherit inputs outputs; };
-#           modules = [ ./nixos/configuration.nix ];
-#         };
-#       };
-#     };
-# }
-
-
 {
   description = "rimraf flakes";
 
@@ -109,11 +79,14 @@
       formatter =
         forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
       darwinModules = import ./modules/darwin;
+      overlays = import ./overlays { inherit inputs; };
       homeManagerModules = import ./modules/home-manager/home.nix;
       darwinConfigurations = {
         eyepop = darwin.lib.darwinSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./configuration.nix ];
+          system.configurationRevision = self.rev or self.dirtyRev or null;
+          modules =
+            [ ./configuration.nix home-manager.darwinModules.home-manager ];
         };
         claire = darwin.lib.darwinSystem {
           specialArgs = { inherit inputs outputs; };
