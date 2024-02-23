@@ -51,6 +51,10 @@
     sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
   };
 
+  system = import ./system.nix;
+  homebrew = import ./homebrew.nix;
+  # programs = import ./programs.nix { inherit pkgs; };
+  # system = import ./system.nix;
   # home-manager.backupFileExtension = ".before-nix";
   # home-manager.useGlobalPkgs = true;
   # home-manager.useUserPackages = true;

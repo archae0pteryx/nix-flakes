@@ -1,13 +1,14 @@
 { pkgs, user, ... }: {
-
-  home-manager.users.rimraf = {
-    home.stateVersion = "22.05";
-    # home.file = import ./dotfiles.nix;
-    # programs = import ./programs.nix { inherit pkgs; };
+  home.stateVersion = "22.05";
+  home.file = {
+    ".config/amethyst/amethyst.yml".source = ./dotfiles/amethyst.yml;
   };
-
-  home-manager.sharedModules =
-    [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
-  # homebrew = import ./homebrew.nix;
-  # system = import ./system.nix;
+  programs = {
+    go.enable = true;
+    fish = import ./fish.nix { inherit pkgs; };
+    gitui = { enable = true; };
+    gh.enable = true;
+    git = import ./git.nix;
+    vim = import ./vim.nix;
+  };
 }
