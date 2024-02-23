@@ -66,7 +66,7 @@
   shellAliases = {
 	  askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
     p = "ping 8.8.8.8";
-    config = "cd ~/.config/nix-darwin && vim ~/.config/nix-darwin";
+    config = "cd ~/.config/nix-flakes && vim ~/.config/nix-flakes";
     fishconfig = "cd ~/.config/fish && vim ~/.config/fish";
     gco = "git checkout";
     gcob = "git checkout -b";
@@ -81,8 +81,8 @@
     dcdv = "docker-compose down -v --remove-orphans";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    eyepopbuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#eyepop";
-    clairebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin#claire";
+    eyepopbuild = "darwin-rebuild switch --flake ~/.config/nix-flakes#eyepop";
+    clairebuild = "darwin-rebuild switch --flake ~/.config/nix-flakes#claire";
     l = "ls -al";
     k = "kubectl";
     kc = "kubectl config";
