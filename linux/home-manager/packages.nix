@@ -15,4 +15,7 @@ with pkgs; [
   xbindkeys
   xautomation
   nerdfonts
+  autokey
+  tmux
+  phoronix-test-suite
 ]
