@@ -1,5 +1,4 @@
-{ config, pkgs, inputs, outputs, ... }:
-{
+{ config, pkgs, inputs, outputs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./nvdia.nix
@@ -79,17 +78,27 @@
     {
       output = "HDMI-0";
       primary = true;
-    } {
+    }
+    {
       output = "DP-1";
-      monitorConfig = "Option \"Rotate\" \"left\"";
+      monitorConfig = ''Option "Rotate" "left"'';
     }
   ];
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [ vim wget git nixfmt ];
-  environment.sessionVariables = rec {
-    EDITOR = "vim";
-  };
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+    pavucontrol
+    usbutils
+    lshw
+    htop
+    xfce.xfce4-volumed-pulse
+  ];
+
+  environment.sessionVariables = rec { EDITOR = "vim"; };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

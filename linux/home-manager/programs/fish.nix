@@ -79,9 +79,7 @@
   shellAliases = {
 	  askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
     p = "ping 8.8.8.8";
-    config = "cd ~/.config/nix-darwin && vim ~/.config/rimraf-flakes";
-    fishconfig = "vim ~/.config/rimraf-flakes";
-    flakeconfig = "vim ~/.config/rimraf-flakes";
+    config = "cd ~/.config/rimraf-flakes && code ~/.config/rimraf-flakes";
     gco = "git checkout";
     gcob = "git checkout -b";
     gc = "git commit -S -m";

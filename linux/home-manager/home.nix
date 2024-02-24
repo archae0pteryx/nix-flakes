@@ -15,6 +15,9 @@
     ];
     config = {
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
@@ -28,7 +31,7 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
-  # xdg = import ./xdg; 
+  # xdg = import ./xdg;
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };

@@ -22,4 +22,19 @@ with pkgs; [
   python311Packages.tensorflow
   unzip
   python311Packages.pip
+  resilio-sync
+  logseq
+  go
+  ffmpeg
+  terraform
+  rustup
+  kubectx
+  kubectl
+  minikube
+  terragrunt
+  helm
+  nixfmt
+
+  nmap
+  volta
 ]
