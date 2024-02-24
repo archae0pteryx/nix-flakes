@@ -34,7 +34,6 @@ with pkgs; [
   terragrunt
   helm
   nixfmt
-
   nmap
   volta
 ]

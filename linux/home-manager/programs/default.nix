@@ -1,8 +1,6 @@
 { pkgs, ... }: {
-  home-manager = {
-    enable = true;
-
-  };
+  home-manager.enable = true;
+  firefox = import ./firefox.nix;
   fzf.enable = true;
   gpg.enable = true;
   ssh = {
