@@ -28,7 +28,7 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
-  # xdg = import ./xdg;
+  # xdg = import ./xdg; 
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };
