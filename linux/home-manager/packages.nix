@@ -18,4 +18,8 @@ with pkgs; [
   autokey
   tmux
   phoronix-test-suite
+  python3
+  python311Packages.tensorflow
+  unzip
+  python311Packages.pip
 ]

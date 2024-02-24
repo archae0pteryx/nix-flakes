@@ -16,17 +16,9 @@
   networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -41,26 +33,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # TODO: DIsplay settings
-  # services.xserver.xrandrHeads = [ ];
-
-  # Enable the XFCE Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
 
-  # Configure keymap in X11
   services.xserver = {
     layout = "us";
     xkbVariant = "";
   };
 
-  # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -69,11 +52,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    #media-session.enable = true;
   };
 
   programs.fish.enable = true;
@@ -94,15 +72,23 @@
   };
   services.openssh.enable = true;
 
-  # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "rimraf";
+  services.xserver.xrandrHeads = [
+    {
+      output = "HDMI-0";
+      primary = true;
+    } {
+      output = "DP-1";
+      monitorConfig = "Option \"Rotate\" \"left\"";
+    }
+  ];
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [ vim wget git nixfmt ];
-
+  environment.sessionVariables = rec {
+    EDITOR = "vim";
+  };
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

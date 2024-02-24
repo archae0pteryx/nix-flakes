@@ -4,7 +4,7 @@
     driSupport = true;
     driSupport32Bit = true;
   };
-
+  hardware.opengl.setLdLibraryPath = true;
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
