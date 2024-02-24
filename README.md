@@ -14,6 +14,11 @@ another nix flake pile and notes for multiple systems and archs.
 nix run nix-darwin -- switch --flake ~/.config/nix-flakes
 ```
 
+```
+# rlsync
+rslsync --generate-secret
+```
+
 ```shell
 defaults read | tr '\=.' '\:' | tr ';' ',' > out.json
 ```

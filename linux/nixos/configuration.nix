@@ -95,7 +95,8 @@
     htop
     xfce.xfce4-volumed-pulse
   ];
-  services.resilio = ./resilio.nix;
+  
+  services.resilio = import ./resilio.nix;
   environment.sessionVariables = rec { EDITOR = "vim"; };
 
   programs.gnupg.agent = {

@@ -22,7 +22,6 @@ with pkgs; [
   python311Packages.tensorflow
   unzip
   python311Packages.pip
-  resilio-sync
   logseq
   go
   ffmpeg
@@ -36,4 +35,7 @@ with pkgs; [
   nixfmt
   nmap
   volta
+  virtualboxWithExtpack
+  vagrant
+  packer
 ]

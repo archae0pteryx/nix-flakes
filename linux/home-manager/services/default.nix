@@ -10,5 +10,4 @@
     enableSshSupport = true;
     sshKeys = [ "~/.ssh/id_ed25519" ];
   };
-
 }
