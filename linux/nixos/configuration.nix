@@ -57,12 +57,11 @@
   programs.fish.enable = true;
   programs.zsh.enable = true;
   programs.xfconf.enable = true;
-
   users.users.rimraf = {
     shell = pkgs.fish;
     isNormalUser = true;
     description = "rimraf";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "rlsync" ];
     packages = with pkgs; [ firefox rofi copyq ];
     openssh.authorizedKeys = {
       keys = [
@@ -96,7 +95,7 @@
     htop
     xfce.xfce4-volumed-pulse
   ];
-  services.resilio.enable = true;
+  services.resilio = ./resilio.nix;
   environment.sessionVariables = rec { EDITOR = "vim"; };
 
   programs.gnupg.agent = {
