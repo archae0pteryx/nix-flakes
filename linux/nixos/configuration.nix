@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./nvdia.nix
+    ./cachix.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
