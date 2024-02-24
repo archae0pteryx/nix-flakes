@@ -3,7 +3,7 @@
   nix.package = pkgs.nix;
   nix.settings.experimental-features = "nix-command flakes";
   nix.settings.auto-optimise-store = true;
-  system.stateVersion = 4;
+  system = import ./system.nix;
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
@@ -50,16 +50,5 @@
     useUserPackages = true;
     sharedModules = [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
   };
-
-  # system = import ./system.nix;
-  homebrew = import ./homebrew.nix;
-  # programs = import ./programs.nix { inherit pkgs; };
-  # system = import ./system.nix;
-  # home-manager.backupFileExtension = ".before-nix";
-  # home-manager.useGlobalPkgs = true;
-  # home-manager.useUserPackages = true;
-
-  # home-manager.sharedModules =
-  #   [{ home.packages = with pkgs; [ nixpkgs-fmt ]; }];
 }
 

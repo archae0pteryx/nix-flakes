@@ -1,4 +1,5 @@
 {
+  stateVersion = 4;
   # dont require logout for changes
   activationScripts.postUserActivation.text = ''
   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
