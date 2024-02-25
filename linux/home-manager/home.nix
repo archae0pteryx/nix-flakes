@@ -31,7 +31,11 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
-  # xdg = import ./xdg;
+  xsession.windowManager.i3 = {
+    config = {
+      terminal = "xfce4-terminal";
+    };
+  };
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };

@@ -35,4 +35,3 @@
   htop.enable = true;
   vim = import ./vim.nix { inherit pkgs; };
 }
-

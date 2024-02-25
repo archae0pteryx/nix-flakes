@@ -10,5 +10,6 @@
   extraConfig = ''
     colorscheme habamax
     syntax on
+    set clipboard+=unnamedplus
   '';
 }
