@@ -78,7 +78,7 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "rimraf";
-    extraGroups = [ "networkmanager" "wheel" "rlsync" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "rlsync" "docker" ];
     packages = with pkgs; [ firefox rofi copyq ];
     openssh.authorizedKeys = {
       keys = [
@@ -111,7 +111,7 @@
     lshw
     htop
     xfce.xfce4-volumed-pulse
-    nixpkgs-fmt
+    nixfmt
   ];
 
   services.resilio = import ./resilio.nix;
@@ -125,9 +125,7 @@
     enable = true;
     enableNvidia = true;
     enableOnBoot = true;
-    autoPrune = {
-      enable = true;
-    };
+    autoPrune = { enable = true; };
     rootless = {
       enable = true;
       setSocketVariable = true;

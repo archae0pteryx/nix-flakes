@@ -8,7 +8,7 @@ in {
     enable = true;
     config = {
       modifier = mod;
-      assigns = import ./assigns.nix
+      assigns = import ./assigns.nix;
       keybindings = lib.mkOptionDefault keybindings;
       terminal = "xfce4-terminal";
       bars = [
