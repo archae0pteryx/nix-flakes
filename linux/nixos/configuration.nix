@@ -112,7 +112,6 @@
     htop
     xfce.xfce4-volumed-pulse
     nixfmt
-
   ];
 
   services.resilio = import ./resilio.nix;
