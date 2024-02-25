@@ -1,42 +1,45 @@
 { pkgs, ... }:
 
 with pkgs; [
-  zoom
-  spotify
-  slack
-  rmtrash
-  firefox
-  rofi
-  vscode
-  keepassxc
-  copyq
-  thunderbird
-  python3
-  xbindkeys
-  xautomation
-  nerdfonts
   autokey
-  tmux
-  phoronix-test-suite
-  python3
-  python311Packages.tensorflow
-  unzip
-  python311Packages.pip
-  logseq
-  go
+  awscli2
+  copyq
   ffmpeg
-  terraform
-  rustup
-  kubectx
-  kubectl
-  minikube
-  terragrunt
+  firefox
+  go
+  google-chrome
   helm
+  keepassxc
+  kubectl
+  kubectx
+  logseq
+  minikube
+  nerdfonts
   nixfmt
   nmap
-  volta
-  virtualboxWithExtpack
-  vagrant
   packer
-  awscli2
+  phoronix-test-suite
+  python3
+  python3
+  python311Packages.pip
+  python311Packages.tensorflow
+  rmtrash
+  rofi
+  rustup
+  signal-desktop
+  slack
+  spotify
+  terraform
+  terragrunt
+  thunderbird
+  tmux
+  unzip
+  vagrant
+  virtualboxWithExtpack
+  volta
+  vscode
+  xautomation
+  xbindkeys
+  xsel
+  zoom-us
 ]
