@@ -38,4 +38,5 @@ with pkgs; [
   virtualboxWithExtpack
   vagrant
   packer
+  awscli2
 ]

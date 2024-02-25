@@ -23,6 +23,9 @@
     userEmail = "github@pocketcereal.com";
     ignores = [ ".DS_Store" "tmp" "node_modules" ".env" ];
     extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
       user = { signingKey = "~/.ssh/id_ed25519.pub"; };
       gpg = { format = "ssh"; };
       commit = { gpgSign = true; };

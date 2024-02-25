@@ -33,9 +33,25 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  # # xfce4
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.desktopManager.xfce.enable = true;
+
+  # # i3
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    displayManager.defaultSession = "xfce";
+    windowManager.i3.enable = true;
+  };
 
   services.xserver = {
     layout = "us";
@@ -61,7 +77,7 @@
     shell = pkgs.fish;
     isNormalUser = true;
     description = "rimraf";
-    extraGroups = [ "networkmanager" "wheel" "rlsync" ];
+    extraGroups = [ "networkmanager" "wheel" "rlsync" "docker"];
     packages = with pkgs; [ firefox rofi copyq ];
     openssh.authorizedKeys = {
       keys = [
@@ -95,13 +111,25 @@
     htop
     xfce.xfce4-volumed-pulse
   ];
-  
+
   services.resilio = import ./resilio.nix;
   environment.sessionVariables = rec { EDITOR = "vim"; };
 
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+    enableOnBoot = true;
+    autoPrune = {
+      enable = true;
+    };
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   # Open ports in the firewall.
