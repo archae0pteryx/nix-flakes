@@ -50,7 +50,7 @@
       };
     };
     displayManager.defaultSession = "xfce";
-    # windowManager.i3.enable = true;
+    windowManager.i3.enable = true;
 
   };
 

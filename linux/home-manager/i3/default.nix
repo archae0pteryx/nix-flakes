@@ -14,8 +14,14 @@ in {
       terminal = "xfce4-terminal";
       bars = [{
         position = "top";
-        statusCommand = "${pkgs.i3status}/bin/i3status";
+        # statusCommand = "${pkgs.i3status}/bin/i3status";
         trayOutput = "HDMI-0";
+        trayPadding = 4;
+        fonts = {
+          names = [ "DejaVu Sans Mono" ];
+          style = "Bold Semi-Condensed";
+          size = 14.0;
+        };
       }];
       gaps = { outer = 3; };
     };

@@ -54,26 +54,26 @@
           eval (/opt/homebrew/bin/brew shellenv)
       end
 
-      set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
-      set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
+      set -Ua fish_user_paths "/Library/Frameworks/GStreamer.framework/Commands"
+
       set -Ux ZO_METHOD "code"
+
       if type -q pyenv
         set -Ux PYENV_ROOT $HOME/.pyenv
-        set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+        set fish_user_paths $PYENV_ROOT/bin
         pyenv init - | source
-
       end
+
       set -s rm "trash"
     case Linux
       set -s rm "rmtrash"
     end
 
-    set -gx VOLTA_HOME "$HOME/.volta"
+    set -Ua VOLTA_ROOT $HOME/.volta
+    set -Ua fish_user_paths $VOLTA_ROOT/bin
 
-    set -U fish_user_paths $HOME/.local/bin $fish_user_paths
-    set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths
-    set -U fish_user_paths $VOLTA_HOME/bin $fish_user_paths
-
+    set -Ua fish_user_paths $HOME/.local/bin
+    set -Ua fish_user_paths $HOME/.cargo/bin
   '';
 
   shellAliases = {
