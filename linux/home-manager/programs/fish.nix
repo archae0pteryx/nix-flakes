@@ -54,7 +54,7 @@
           eval (/opt/homebrew/bin/brew shellenv)
       end
 
-      set -Ua fish_user_paths "/Library/Frameworks/GStreamer.framework/Commands"
+      set -Ux fish_user_paths "/Library/Frameworks/GStreamer.framework/Commands"
 
       set -Ux ZO_METHOD "code"
 
@@ -67,13 +67,12 @@
       set -s rm "trash"
     case Linux
       set -s rm "rmtrash"
+      set -g -x PLAYWRIGHT_BROWSERS_PATH ${pkgs.playwright-driver.browsers}
+      set -g -x PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS true
     end
 
-    set -Ua VOLTA_ROOT $HOME/.volta
-    set -Ua fish_user_paths $VOLTA_ROOT/bin
-
-    set -Ua fish_user_paths $HOME/.local/bin
-    set -Ua fish_user_paths $HOME/.cargo/bin
+    set -ga fish_user_paths $HOME/.local/bin
+    set -ga fish_user_paths $HOME/.cargo/bin
   '';
 
   shellAliases = {
