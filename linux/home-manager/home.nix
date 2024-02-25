@@ -1,6 +1,5 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [
-  ];
+  imports = [];
 
   nixpkgs = {
     overlays = [
@@ -31,20 +30,7 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
-  xsession.windowManager.i3 = {
-    enable = true;
-    config = {
-      terminal = "xfce4-terminal";
-      bars = [
-        {
-          position = "bottom";
-          status_command = "i3status";
-          tray_output = "HDMI-0";
-          padding = "5px";
-        }
-      ];
-    };
-  };
+  xsession.windowManager = import ./i3.nix { inherit pkgs lib config; };
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };
