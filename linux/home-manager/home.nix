@@ -32,8 +32,17 @@
   };
 
   xsession.windowManager.i3 = {
+    enable = true;
     config = {
       terminal = "xfce4-terminal";
+      bars = [
+        {
+          position = "bottom";
+          status_command = "i3status";
+          tray_output = "HDMI-0";
+          padding = "5px";
+        }
+      ];
     };
   };
 

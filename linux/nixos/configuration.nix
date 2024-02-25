@@ -50,7 +50,8 @@
       };
     };
     displayManager.defaultSession = "xfce";
-    windowManager.i3.enable = true;
+    # windowManager.i3.enable = true;
+
   };
 
   services.xserver = {
@@ -87,8 +88,8 @@
   };
   services.openssh.enable = true;
 
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "rimraf";
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "rimraf";
   services.xserver.xrandrHeads = [
     {
       output = "HDMI-0";
