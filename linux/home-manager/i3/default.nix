@@ -2,14 +2,14 @@
 
 let
   mod = "Mod1";
-  keybindings = import ./keybindings.nix { mod = mod; }
+  keybindings = import ./keybindings.nix { mod = mod; };
 in {
   i3 = {
     enable = true;
     config = {
       modifier = mod;
-      keybindings = lib.mkOptionDefault (keybindings mod);
-
+      assigns = import ./assigns.nix
+      keybindings = lib.mkOptionDefault keybindings;
       terminal = "xfce4-terminal";
       bars = [
         {

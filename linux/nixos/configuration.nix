@@ -111,6 +111,7 @@
     lshw
     htop
     xfce.xfce4-volumed-pulse
+    nixpkgs-fmt
   ];
 
   services.resilio = import ./resilio.nix;

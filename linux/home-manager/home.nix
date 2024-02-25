@@ -30,7 +30,7 @@
     packages = import ./packages.nix { inherit pkgs; };
   };
 
-  xsession.windowManager = import ./i3.nix { inherit pkgs lib config; };
+  xsession.windowManager = import ./i3 { inherit pkgs lib config; };
 
   programs = import ./programs { inherit pkgs; };
   services = import ./services { };
