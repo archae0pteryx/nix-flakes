@@ -47,24 +47,29 @@
       };
     }
   ];
+
   shellInit = ''
     if test (uname -m) = "arm64"
         eval (/opt/homebrew/bin/brew shellenv)
     end
-    set -gx PATH "/Library/Frameworks/GStreamer.framework/Commands" $PATH
-    set -gx PATH "/usr/local/lib" $PATH
-    set -gx PATH "$HOME/.cargo/bin" $PATH
-    set -gx VOLTA_HOME "$HOME/.volta"
-    set -gx PATH "$VOLTA_HOME/bin" $PATH
-    set -gx PATH "$HOME/.local/bin" $PATH
+
+    set -Ux VOLTA_HOME "$HOME/.volta"
+    set -Ux PYENV_ROOT "$HOME/.pyenv"
     set -Ux ZO_METHOD "code"
 
-    set -Ux PYENV_ROOT $HOME/.pyenv
-    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+    set -Ux PKG_CONFIG_PATH "$HOME/local/lib/pkgconfig:/opt/homebrew/lib/pkgconfig:${pkgs.gst_all_1.gstreamer.dev}/lib/pkgconfig"
+    set -Ux GST_PLUGIN_SYSTEM_PATH "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0/:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0"
+    set -ga fish_user_paths "$HOME/.local/bin"
+    set -ga fish_user_paths "$HOME/.cargo/bin"
+    set -ga fish_user_paths "$VOLTA_HOME/bin"
+    set -ga fish_user_paths "$HOME/.pyenv/bin"
+    set -ga fish_user_paths "$HOME/local/bin"
+    set -ga fish_user_paths "${pkgs.gst_all_1.gstreamer.dev}/bin"
+
     pyenv init - | source
   '';
   shellAliases = {
-	  askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
+    askvim = "sgpt --chat vim 'what is the nvim movement or config for'";
     p = "ping 8.8.8.8";
     config = "cd ~/.config/nix-flakes && vim ~/.config/nix-flakes";
     fishconfig = "cd ~/.config/fish && vim ~/.config/fish";
@@ -73,7 +78,8 @@
     gc = "git commit -S -m";
     gp = "git push";
     dc = "docker-compose";
-    dcstopall = "docker-compose down --remove-orphans && docker ps -aq | xargs docker stop";
+    dcstopall =
+      "docker-compose down --remove-orphans && docker ps -aq | xargs docker stop";
     dcb = "docker-compose build";
     dcr = "docker-compose run --rm";
     dcu = "docker-compose up";
@@ -81,8 +87,10 @@
     dcdv = "docker-compose down -v --remove-orphans";
     "..." = "cd ../..";
     "...." = "cd ../../../";
-    eyepopbuild = "darwin-rebuild switch --flake ~/.config/nix-flakes#eyepop";
-    clairebuild = "darwin-rebuild switch --flake ~/.config/nix-flakes#claire";
+    eyepopbuild =
+      "darwin-rebuild switch --flake ~/.config/nix-flakes/darwin#eyepop";
+    clairebuild =
+      "darwin-rebuild switch --flake ~/.config/nix-flakes/darwin#claire";
     l = "ls -al";
     k = "kubectl";
     kc = "kubectl config";
@@ -98,8 +106,8 @@
     c = "cd ~/Code";
     desk = "cd ~/Desktop";
     eyepop = "cd ~/Code/eyepop";
-		webapi = "cd ~/Code/eyepop/eyepop-web-api";
-		webapp = "cd ~/Code/eyepop/eyepop-vercel";
+    webapi = "cd ~/Code/eyepop/eyepop-web-api";
+    webapp = "cd ~/Code/eyepop/eyepop-vercel";
     kns = "kubens";
     kx = "kubectx";
     rm = "trash";

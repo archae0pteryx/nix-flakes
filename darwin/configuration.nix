@@ -38,7 +38,17 @@
 
   environment = {
     shells = with pkgs; [ bashInteractive fish zsh ];
-    systemPackages = with pkgs; [ vim wget nixfmt ];
+    systemPackages = with pkgs; [
+      vim
+      wget
+      nixfmt
+#      pkgs.gst_all_1.gstreamer
+#      pkgs.gst_all_1.gst-plugins-base
+#      pkgs.gst_all_1.gst-plugins-good
+#      pkgs.gst_all_1.gst-plugins-bad
+#      pkgs.gst_all_1.gst-plugins-ugly
+#      gst_all_1.gst-libav
+    ];
     variables = { EDITOR = "vim"; };
   };
 

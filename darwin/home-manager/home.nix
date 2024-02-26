@@ -3,6 +3,7 @@
   home.file = {
     ".config/amethyst/amethyst.yml".source = ./dotfiles/amethyst.yml;
   };
+  home.packages = with pkgs; [];
   programs = {
     go.enable = true;
     fish = import ./fish.nix { inherit pkgs; };

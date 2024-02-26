@@ -11,6 +11,7 @@
 		"dotnet"
     "ffmpeg"
     "fzf"
+    "glib-2.0"
     "gnupg"
     "golang"
     "hashicorp/tap/packer"
