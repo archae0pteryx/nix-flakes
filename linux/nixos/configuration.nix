@@ -5,20 +5,20 @@
     ./cachix.nix
     inputs.home-manager.nixosModules.home-manager
   ];
-
+  
   nix.settings.experimental-features = "nix-command flakes";
   nix.package = pkgs.nixFlakes;
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   networking.networkmanager.enable = true;
+
+  # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -33,12 +33,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # # xfce4
-  # services.xserver.enable = true;
-  # services.xserver.displayManager.lightdm.enable = true;
-  # services.xserver.desktopManager.xfce.enable = true;
-
-  # # i3
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -51,7 +45,6 @@
     };
     displayManager.defaultSession = "xfce";
     windowManager.i3.enable = true;
-
   };
 
   services.xserver = {
@@ -59,6 +52,17 @@
     xkbVariant = "";
   };
 
+  services.xserver.xrandrHeads = [
+    {
+      output = "HDMI-0";
+      primary = true;
+    }
+    {
+      output = "DP-1";
+      monitorConfig = ''Option "Rotate" "left"'';
+    }
+  ];
+  
   services.printing.enable = true;
 
   sound.enable = true;
@@ -69,11 +73,13 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # jack.enable = true;
   };
 
   programs.fish.enable = true;
   programs.zsh.enable = true;
   programs.xfconf.enable = true;
+
   users.users.rimraf = {
     shell = pkgs.fish;
     isNormalUser = true;
@@ -86,22 +92,15 @@
       ];
     };
   };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = { rimraf = import ../home-manager/home.nix; };
+  };
+  
   services.openssh.enable = true;
-
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "rimraf";
-  services.xserver.xrandrHeads = [
-    {
-      output = "HDMI-0";
-      primary = true;
-    }
-    {
-      output = "DP-1";
-      monitorConfig = ''Option "Rotate" "left"'';
-    }
-  ];
-
   nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -121,6 +120,7 @@
     enable = true;
     enableSSHSupport = true;
   };
+
   virtualisation.docker = {
     enable = true;
     enableNvidia = true;
@@ -131,17 +131,11 @@
       setSocketVariable = true;
     };
   };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = { rimraf = import ../home-manager/home.nix; };
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

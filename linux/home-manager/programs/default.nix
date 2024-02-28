@@ -1,14 +1,17 @@
 { pkgs, ... }: {
   home-manager.enable = true;
   firefox = import ./firefox.nix;
-  fzf.enable = true;
+  fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   gpg.enable = true;
   ssh = {
     enable = true;
     extraConfig = ''
-      Host github.com
-        AddKeysToAgent yes
-        IdentityFile ~/.ssh/id_ed25519
+    Host github.com
+      AddKeysToAgent yes
+      IdentityFile ~/.ssh/id_ed25519
     '';
   };
   bash.enable = true;
